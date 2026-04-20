@@ -5,3 +5,7 @@ void init(Queue* q) {
     q->front = nullptr;
     q->rear = nullptr;
 }
+
+bool isEmpty(const Queue* q) {
+    return q->front == nullptr;
+}
