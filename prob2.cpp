@@ -23,8 +23,8 @@ int main() {
 
 
     for (int i = 0; i < k; i++) {
-        enqueue(&q, arr[i]);      // Masukkan ke antrean
-        current_sum += arr[i];    // Tambahkan ke total
+        enqueue(&q, arr[i]);   
+        current_sum += arr[i]; 
     }
 
     cout << current_sum;
