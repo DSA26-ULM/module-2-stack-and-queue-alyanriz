@@ -2,9 +2,13 @@
 #include <stdexcept>
 
 void init(Stack* s) {
-    s->top = nullptr; 
+    s->top = s->data - 1; 
 }
 
 bool isEmpty(const Stack* s) {
-    return s->top == nullptr;
+    return s->top < s->data;
+}
+
+bool isFull(const Stack* s) {
+    return s->top >= s->data + MAX - 1;
 }
