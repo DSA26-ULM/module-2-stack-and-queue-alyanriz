@@ -2,10 +2,47 @@
 #include <stdexcept>
 
 void init(Queue* q) {
-    q->front = nullptr;
-    q->rear = nullptr;
+    q->front = q->data;
+    q->rear = q->data - 1;
 }
 
 bool isEmpty(const Queue* q) {
-    return q->front == nullptr;
+    return q->front > q->rear;
+}
+
+bool isFull(const Queue* q) {
+    return q->rear >= q->data + MAX - 1; 
+}
+
+void enqueue(Queue* q, int value) {
+    if (isFull(q)) {
+        throw std::overflow_error("Error: Queue penuh!");
+    }
+    q->rear++;
+    *(q->rear) = value;
+}
+void dequeue(Queue* q) {
+    if (isEmpty(q)) {
+        throw std::underflow_error("Error: Queue kosong, tidak bisa dequeue!");
+    }
+    q->front++;
+
+    if (q->front > q->rear) {
+        q->front = q->data;
+        q->rear = q->data - 1;
+    }
+}
+
+int front(const Queue* q) {
+    if (isEmpty(q)) {
+        throw std::underflow_error("Error: Queue kosong!");
+    }
+    return *(q->front);
+}
+
+int back(const Queue* q) {
+    if (isEmpty(q)) {
+        throw std::underflow_error("Error: Queue kosong!");
+    }
+    return *(q->rear);
 }
