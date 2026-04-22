@@ -11,12 +11,20 @@ bool isEmpty(const Queue* q) {
 }
 
 bool isFull(const Queue* q) {
-    return q->rear >= q->data + MAX - 1; 
+    return q->rear >= q->data + MAX; 
 }
 
 void enqueue(Queue* q, int value) {
     if (isFull(q)) {
         throw std::overflow_error("Queue penuh.");
+    }
+    if (q->rear >= q->data + MAX - 1) {
+        int jumlah_elemen = q->rear - q->front + 1;
+        for (int i = 0; i < jumlah_elemen; i++) {
+            *(q->data + i) = *(q->front + i);
+        }
+        q->front = q->data;
+        q->rear = q->data + jumlah_elemen - 1;
     }
     q->rear++;
     *(q->rear) = value;
