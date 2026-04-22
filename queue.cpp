@@ -29,6 +29,7 @@ void enqueue(Queue* q, int value) {
     q->rear++;
     *(q->rear) = value;
 }
+
 void dequeue(Queue* q) {
     if (isEmpty(q)) {
         throw std::underflow_error("Queue kosong.");
